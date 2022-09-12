@@ -9,8 +9,8 @@ def fizz_buzz(number)
     output_array.push ("Bong")
   end
   if number%17==0 then output_array.reverse! end
-  output_array.length == 0 ? number : output_array.join("")
-  return output_array
+  output = output_array.length == 0 ? number : output_array.join("")
+  return output
 end
 
 def fizz_buzz_list(max)
