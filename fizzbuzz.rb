@@ -9,14 +9,14 @@ def fizz_buzz(number)
     output_array.push ("Bong")
   end
   if number%17==0 then output_array.reverse! end
-  if output_array.length == 0 then output_array.push(number) end
-  return output_array.join("")
+  output_array.length == 0 ? output_array.push(number) : output_array.join("")
+  return output_array
 end
 
 def fizz_buzz_list(max)
-  for number in 1..max
+  (1..max).each { |number|
     puts(fizz_buzz(number))
-  end
+  }
 end
 
 TestCase = Struct.new(:input, :output)
@@ -34,18 +34,31 @@ fizz_buzz_test_cases =
 
 def fizz_buzz_test(test_cases)
   num_pass = 0
-  for test in test_cases
+  test_cases.each { |test|
     my_output = fizz_buzz(test.input)
     result = (my_output == test.output)
-    puts("Input: "+test.input.to_s+", Expected Output: "+test.output+", Function Output: "+my_output+" Result: "+result.to_s)
-    if result == true then num_pass+=1 end
-  end
-  puts("Passing "+num_pass.to_s+" / "+test_cases.length.to_s+""+(num_pass==test_cases.length ? " Success!":" ERROR"))
+    puts("Input: #{test.input}, Expected Output: #{test.output}, Function Output: #{my_output} Result: #{result})")
+    if result == true then num_pass += 1 end
+  }
+  puts("Passing #{num_pass} / #{test_cases.length} #{(num_pass==test_cases.length ? " Success!":" ERROR")}")
   puts("FizzBuzz Output:")
 end
-
+#
+# argument_rules = [];
+# rules_definition = {
+#   '3' => 'Fizz',
+#   '5' => 'Buzz',
+#   '7' => 'Bang',
+#   '11' => 'Bong',
+#   '13' => 'Fezz',
+#   '17' => 'Reverse'
+#
+# }
+# ARGV.each do|a|
+#   puts "Argument: #{a}"
+# end
 puts "Enter max fizzbuzz number to print:"
-user_input_max = gets.chomp.to_i
+user_input_max = $stdin.gets.chomp.to_i
 fizz_buzz_test(fizz_buzz_test_cases)
 fizz_buzz_list(user_input_max)
 
