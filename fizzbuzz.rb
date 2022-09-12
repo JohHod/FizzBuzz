@@ -9,7 +9,7 @@ def fizz_buzz(number)
     output_array.push ("Bong")
   end
   if number%17==0 then output_array.reverse! end
-  output_array.length == 0 ? output_array.push(number) : output_array.join("")
+  output_array.length == 0 ? number : output_array.join("")
   return output_array
 end
 
